@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Memoria Eterna — Placas Memoriales con QR | Versión Azul</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&amp;family=Lora:ital,wght@0,400;0,500;1,400&amp;family=DM+Sans:wght@300;400;500&amp;display=swap" rel="stylesheet">
+<style>
+:root{
+  /* PALETA AZUL MARINO + ESMERALDA */
+  --gold:#2a7a6f;          /* esmeralda principal */
+  --gold-light:#3d9e91;    /* esmeralda claro */
+  --gold-dim:#1a5a52;      /* esmeralda oscuro */
+  --cream:#f0f4f8;         /* gris azulado muy claro */
+  --dark:#0d1b2a;          /* azul marino profundo */
+  --dark2:#122236;         /* azul marino medio */
+  --dark3:#1a3048;         /* azul marino suave */
+  --text:#1a2e3d;          /* texto principal */
+  --text-soft:#4a6880;     /* texto secundario */
+  --border:rgba(42,122,111,0.22);
+  --fd:'Playfair Display',Georgia,serif;
+  --fb:'Lora',Georgia,serif;
+  --fu:'DM Sans',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--text);font-family:var(--fb);font-size:18px;line-height:1.8;overflow-x:hidden}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-thumb{background:var(--gold-dim);border-radius:3px}
+a{color:inherit;text-decoration:none}
+img{display:block;width:100%;height:100%;object-fit:cover}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(240,244,248,.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:14px 32px;transition:box-shadow .3s}
+nav.scrolled{box-shadow:0 4px 30px rgba(13,27,42,.12)}
+.nav-logo{font-family:var(--fd);font-size:17px;letter-spacing:.04em;color:var(--dark);display:flex;align-items:center;gap:8px}
+.nav-logo .g{color:var(--gold)}
+.nav-links{display:flex;gap:24px;list-style:none}
+.nav-links a{font-family:var(--fu);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-soft);transition:color .2s}
+.nav-links a:hover{color:var(--gold)}
+.btn-nav{background:var(--gold);color:white;font-family:var(--fu);font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:10px 22px;border-radius:24px;border:none;cursor:pointer;transition:background .2s}
+.btn-nav:hover{background:var(--gold-dim)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
+.hamburger span{width:22px;height:2px;background:var(--text);display:block}
+.mob-menu{display:none;position:fixed;top:60px;left:0;right:0;background:var(--cream);border-bottom:1px solid var(--border);padding:16px 24px;z-index:899}
+.mob-menu a{display:block;font-family:var(--fu);font-size:14px;padding:12px 0;border-bottom:1px solid var(--border);color:var(--text)}
+.mob-menu.open{display:block}
+/* HERO */
+#hero{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;background:var(--dark);color:white;position:relative;overflow:hidden}
+#hero::before{content:'';position:absolute;inset:0;background:
+  radial-gradient(ellipse 60% 50% at 30% 20%,rgba(42,122,111,.18),transparent 60%),
+  radial-gradient(ellipse 50% 60% at 80% 80%,rgba(42,122,111,.12),transparent 60%),
+  radial-gradient(ellipse 80% 40% at 50% 50%,rgba(18,34,54,.6),transparent 80%);
+  pointer-events:none}
+#hero::after{content:'';position:absolute;inset:0;background-image:
+  linear-gradient(rgba(42,122,111,.06) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(42,122,111,.06) 1px,transparent 1px);
+  background-size:60px 60px;pointer-events:none;opacity:.5}
+.hero-badge{font-family:var(--fu);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-light);border:1px solid rgba(42,122,111,.4);padding:7px 22px;border-radius:100px;margin-bottom:40px;background:rgba(42,122,111,.1);backdrop-filter:blur(4px)}
+.hero-title{font-family:var(--fd);font-size:clamp(38px,7.5vw,88px);font-weight:600;letter-spacing:.02em;line-height:1.05;color:white;margin-bottom:16px}
+.hero-title .g{color:var(--gold-light);font-style:italic}
+.hero-sub{font-family:var(--fb);font-style:italic;font-size:clamp(17px,2.8vw,24px);color:rgba(255,255,255,.55);margin-bottom:48px;font-weight:400}
+.hero-desc{font-family:var(--fu);font-size:15px;color:rgba(255,255,255,.45);max-width:540px;line-height:1.8;margin-bottom:56px}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+.btn-p{background:var(--gold);color:white;font-family:var(--fu);font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:16px 36px;border-radius:100px;transition:all .25s;border:none;cursor:pointer;display:inline-block;box-shadow:0 4px 20px rgba(42,122,111,.4)}
+.btn-p:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 8px 28px rgba(42,122,111,.5)}
+.btn-o{background:transparent;color:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.25);font-family:var(--fu);font-size:13px;letter-spacing:.06em;text-transform:uppercase;padding:16px 36px;border-radius:100px;transition:all .25s;cursor:pointer;display:inline-block}
+.btn-o:hover{border-color:var(--gold-light);color:var(--gold-light)}
+.hero-scroll{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.25);font-family:var(--fu);font-size:10px;letter-spacing:.2em;text-align:center;animation:pulse 2.5s ease-in-out infinite}
+.hero-scroll::after{content:'';display:block;width:1px;height:40px;background:linear-gradient(var(--gold),transparent);margin:8px auto 0}
+@keyframes pulse{0%,100%{opacity:.25}50%{opacity:.7}}
+/* SECCIONES */
+section{padding:88px 24px}
+.cont{max-width:1100px;margin:0 auto}
+.stag{font-family:var(--fu);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.stitle{font-family:var(--fd);font-size:clamp(26px,4.5vw,50px);font-weight:600;letter-spacing:.01em;color:var(--dark);margin-bottom:20px;line-height:1.15}
+.sdesc{font-family:var(--fu);font-size:15px;color:var(--text-soft);line-height:1.75;max-width:600px}
+.divider{width:48px;height:3px;background:linear-gradient(90deg,var(--gold),transparent);margin:24px 0;border-radius:2px}
+/* QUÉ ES */
+#que-es{background:var(--cream)}
+.qe-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;margin-top:56px}
+.qe-visual{background:linear-gradient(145deg,var(--dark2),var(--dark));border-radius:16px;padding:56px 36px;text-align:center;border:1px solid rgba(42,122,111,.2);position:relative;overflow:hidden;box-shadow:0 20px 60px rgba(13,27,42,.2)}
+.qe-visual::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 30%,rgba(42,122,111,.15),transparent 60%)}
+.qr-box{width:100px;height:100px;background:white;margin:0 auto 24px;border-radius:12px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,.2)}
+.qe-visual p{font-family:var(--fd);font-size:18px;color:var(--gold-light);letter-spacing:.02em;font-style:italic;position:relative}
+.qe-visual small{color:rgba(255,255,255,.4);font-family:var(--fu);font-size:12px;margin-top:8px;display:block;position:relative}
+.qe-stats{margin-top:32px;border-top:1px solid rgba(42,122,111,.2);padding-top:24px;display:flex;gap:24px;justify-content:center;position:relative}
+.qe-stat-v{font-family:var(--fd);font-size:26px;color:var(--gold-light)}
+.qe-stat-l{font-family:var(--fu);font-size:11px;color:rgba(255,255,255,.4);letter-spacing:.1em;text-transform:uppercase;margin-top:4px;text-align:center}
+.steps{display:flex;flex-direction:column;gap:28px;margin-top:36px}
+.step{display:flex;gap:20px;align-items:flex-start}
+.step-n{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:15px;font-weight:600;color:white;flex-shrink:0;background:linear-gradient(135deg,var(--gold),var(--gold-dim));box-shadow:0 4px 12px rgba(42,122,111,.3)}
+.step h3{font-family:var(--fd);font-size:16px;font-weight:600;color:var(--dark);margin-bottom:6px}
+.step p{font-family:var(--fu);font-size:13px;color:var(--text-soft);line-height:1.6}
+/* BENEFICIOS */
+#beneficios{background:var(--dark);color:white}
+#beneficios .stitle{color:white}
+.ben-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:56px}
+.ben-card{background:var(--dark2);padding:36px 26px;border:1px solid rgba(42,122,111,.12);transition:all .3s;position:relative;overflow:hidden}
+.ben-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),transparent);opacity:0;transition:opacity .3s}
+.ben-card:hover{background:var(--dark3);transform:translateY(-3px);box-shadow:0 10px 30px rgba(0,0,0,.3)}
+.ben-card:hover::before{opacity:1}
+.ben-icon{font-size:32px;margin-bottom:18px;display:block}
+.ben-title{font-family:var(--fd);font-size:16px;font-weight:600;color:var(--gold-light);margin-bottom:10px}
+.ben-text{font-family:var(--fu);font-size:13px;color:rgba(255,255,255,.5);line-height:1.65}
+/* GALERÍA */
+#galeria{background:#e8eef4}
+.gal-intro{text-align:center;margin-bottom:52px}
+.gal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.gal-item{border-radius:12px;overflow:hidden;aspect-ratio:1;border-radius:12px;position:relative;cursor:pointer;background:var(--dark3)}
+.gal-ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:20px}
+.gal-ph span{font-size:34px}
+.gal-ph p{font-family:var(--fu);font-size:11px;color:rgba(255,255,255,.4);letter-spacing:.1em;text-transform:uppercase;text-align:center}
+.gal-lbl{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(13,27,42,.9));padding:28px 14px 12px;color:white;font-family:var(--fu);font-size:11px;letter-spacing:.08em;text-transform:uppercase;opacity:0;transition:opacity .3s}
+.gal-item:hover .gal-lbl{opacity:1}
+#lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:9999;align-items:center;justify-content:center;padding:20px}
+#lightbox.open{display:flex}
+#lightbox img{max-width:90vw;max-height:85vh;object-fit:contain}
+#lb-close{position:absolute;top:20px;right:24px;color:white;font-size:28px;cursor:pointer;background:none;border:none;opacity:.7}
+#lb-close:hover{opacity:1}
+/* VIDEOS */
+#videos{background:var(--cream)}
+.vid-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:44px}
+.vid-card{background:var(--dark);border-radius:12px;overflow:hidden;border:1px solid rgba(42,122,111,.2);box-shadow:0 8px 30px rgba(13,27,42,.15)}
+.vid-wrap{position:relative;padding-bottom:56.25%}
+.vid-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
+.vid-info{padding:14px 18px}
+.vid-info h3{font-family:var(--fd);font-size:14px;font-weight:600;color:var(--gold-light);margin-bottom:4px}
+.vid-info p{font-family:var(--fu);font-size:12px;color:rgba(255,255,255,.4)}
+/* PRECIOS */
+#costos{background:linear-gradient(160deg,var(--dark) 0%,var(--dark2) 100%);color:white}
+#costos .stitle{color:white}
+#costos .sdesc{color:rgba(255,255,255,.5)}
+.price-grid{display:flex;gap:22px;flex-wrap:wrap;margin-top:56px;justify-content:center}
+.price-card{border:1px solid rgba(42,122,111,.2);border-radius:16px;padding:36px 24px;background:rgba(18,34,54,.8);position:relative;display:flex;flex-direction:column;flex:1;min-width:240px;max-width:340px;backdrop-filter:blur(8px)}
+.price-card.feat{border-color:var(--gold);background:linear-gradient(145deg,rgba(26,48,72,.95),rgba(18,34,54,.95));box-shadow:0 0 40px rgba(42,122,111,.2)}
+.price-badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:linear-gradient(90deg,var(--gold),var(--gold-light));color:white;font-family:var(--fu);font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:5px 18px;border-radius:100px;white-space:nowrap;box-shadow:0 4px 12px rgba(42,122,111,.4)}
+.price-name{font-family:var(--fd);font-size:18px;font-weight:600;color:var(--gold-light);margin-bottom:8px}
+.price-amount{font-family:var(--fd);font-size:clamp(32px,5vw,48px);color:white;letter-spacing:.01em;margin-bottom:4px;font-weight:600}
+.price-amount .cur{font-size:20px;color:var(--gold-light)}
+.price-period{font-family:var(--fu);font-size:13px;color:rgba(255,255,255,.4);margin-bottom:28px}
+.price-feats{list-style:none;flex:1;margin-bottom:28px;display:flex;flex-direction:column;gap:10px}
+.price-feats li{font-family:var(--fu);font-size:13px;color:rgba(255,255,255,.65);display:flex;gap:10px;align-items:flex-start}
+.price-feats li::before{content:'●';color:var(--gold);font-size:8px;margin-top:6px;flex-shrink:0}
+.btn-price{display:block;text-align:center;padding:13px;background:var(--gold);color:white;font-family:var(--fu);font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;border-radius:8px;transition:all .25s;border:none;cursor:pointer;width:100%}
+.btn-price:hover{background:var(--gold-light);transform:translateY(-2px)}
+.btn-price-o{display:block;text-align:center;padding:13px;background:transparent;color:var(--gold-light);font-family:var(--fu);font-size:12px;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--gold-light);border-radius:8px;transition:all .25s;cursor:pointer;width:100%}
+.btn-price-o:hover{background:var(--gold);color:white;border-color:var(--gold)}
+/* PEDIDOS */
+#pedidos{background:#e8eef4}
+.order-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:56px;margin-top:52px;align-items:flex-start}
+.order-form{background:white;border-radius:16px;padding:36px;border:1px solid #ccd8e0;box-shadow:0 8px 40px rgba(0,0,0,.06)}
+.order-form h3{font-family:var(--fd);font-size:20px;letter-spacing:.05em;margin-bottom:24px;color:var(--dark)}
+.fg{margin-bottom:18px}
+.fg label{display:block;font-family:var(--fu);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-soft);margin-bottom:7px}
+.fg input,.fg select,.fg textarea{width:100%;padding:11px 14px;border:1px solid #ccd8e0;border-radius:8px;font-family:var(--fu);font-size:14px;color:var(--text);background:white;transition:border-color .2s;outline:none}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--gold)}
+.fg textarea{resize:vertical;min-height:90px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.pay-opts{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+.pay-opt{display:flex;align-items:center;gap:8px;padding:9px 14px;border:1px solid #ccd8e0;border-radius:8px;cursor:pointer;font-family:var(--fu);font-size:13px;transition:all .2s}
+.pay-opt:hover{border-color:var(--gold)}
+.pay-opt input{accent-color:var(--gold)}
+.order-side{display:flex;flex-direction:column;gap:20px}
+.side-card{background:white;border-radius:12px;padding:24px;border:1px solid #ccd8e0;box-shadow:0 2px 12px rgba(13,27,42,.06)}
+.side-card h4{font-family:var(--fd);font-size:15px;letter-spacing:.05em;color:var(--dark);margin-bottom:10px}
+.side-card p{font-family:var(--fu);font-size:13px;color:var(--text-soft);line-height:1.6}
+.wa-btn-style{display:flex;align-items:center;gap:10px;background:#25D366;color:white;padding:13px 20px;border-radius:24px;font-family:var(--fu);font-size:13px;font-weight:500;transition:all .25s;margin-top:14px;border:none;cursor:pointer;width:100%;text-decoration:none}
+.wa-btn-style:hover{background:#1da851;transform:translateY(-2px);box-shadow:0 6px 20px rgba(37,211,102,.3)}
+.mp-btn-style{display:flex;align-items:center;gap:10px;background:#009ee3;color:white;padding:13px 20px;border-radius:24px;font-family:var(--fu);font-size:13px;font-weight:500;transition:all .25s;margin-top:10px;border:none;cursor:pointer;width:100%;text-decoration:none}
+.mp-btn-style:hover{background:#007bbf;transform:translateY(-2px)}
+/* TESTIMONIOS */
+#testimonios{background:var(--cream)}
+.test-intro{text-align:center;margin-bottom:52px}
+.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:56px}
+.test-card{background:white;border-radius:16px;padding:28px;border:1px solid #ccd8e0;box-shadow:0 2px 12px rgba(13,27,42,.05);position:relative;transition:all .3s}
+.test-card:hover{box-shadow:0 16px 48px rgba(13,27,42,.12);transform:translateY(-4px)}
+.test-card::before{content:'\201C';font-family:var(--fd);font-size:72px;color:var(--gold);opacity:.12;position:absolute;top:8px;left:18px;line-height:1}
+.test-stars{color:var(--gold);font-size:13px;margin-bottom:14px}
+.test-text{font-family:var(--fb);font-style:italic;font-size:15px;color:var(--text);line-height:1.7;margin-bottom:18px;position:relative;z-index:1}
+.test-author{display:flex;align-items:center;gap:10px}
+.test-avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--gold-dim),var(--gold));display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:15px;color:white;flex-shrink:0}
+.test-name{font-family:var(--fu);font-size:13px;font-weight:500;color:var(--dark)}
+.test-date{font-family:var(--fu);font-size:12px;color:var(--text-soft)}
+.comment-form-box{background:white;border-radius:16px;padding:36px;border:1px solid #ccd8e0;max-width:620px;box-shadow:0 4px 24px rgba(13,27,42,.07);margin:0 auto}
+.pub-comment{background:white;border:1px solid #ccd8e0;border-radius:12px;padding:18px 22px;margin-bottom:14px}
+.pc-top{display:flex;justify-content:space-between;margin-bottom:6px}
+.pc-name{font-family:var(--fu);font-size:13px;font-weight:500;color:var(--dark)}
+.pc-date{font-family:var(--fu);font-size:12px;color:var(--text-soft)}
+.pc-stars{color:var(--gold);font-size:12px;margin-bottom:5px}
+.pc-text{font-family:var(--fb);font-size:15px;color:var(--text);font-style:italic}
+/* REDES */
+#redes{background:linear-gradient(160deg,var(--dark),var(--dark2));padding:80px 24px}
+#redes .stitle{color:white;text-align:center}
+.redes-grid{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-top:44px}
+.red-card{display:flex;flex-direction:column;align-items:center;gap:10px;padding:26px 28px;background:rgba(255,255,255,.05);border:1px solid rgba(42,122,111,.2);border-radius:16px;transition:all .3s;min-width:120px;backdrop-filter:blur(4px);text-decoration:none}
+.red-card:hover{border-color:var(--gold-light);transform:translateY(-4px);background:rgba(42,122,111,.12);box-shadow:0 8px 24px rgba(42,122,111,.2)}
+.red-icon{font-size:30px}
+.red-name{font-family:var(--fu);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+.red-card:hover .red-name{color:var(--gold-light)}
+/* FOOTER */
+footer{background:var(--dark);border-top:1px solid var(--border);padding:44px 24px;text-align:center}
+.foot-logo{font-family:var(--fd);font-size:19px;font-weight:600;font-style:italic;color:var(--gold-light);margin-bottom:14px}
+.foot-links{display:flex;justify-content:center;gap:22px;flex-wrap:wrap;margin:16px 0}
+.foot-links a{font-family:var(--fu);font-size:12px;color:rgba(255,255,255,.4);letter-spacing:.05em;transition:color .2s}
+.foot-links a:hover{color:var(--gold-light)}
+.foot-text{font-family:var(--fu);font-size:12px;color:rgba(255,255,255,.3);line-height:1.7}
+/* WA FLOTANTE */
+.wa-float{position:fixed;bottom:28px;right:28px;z-index:800;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 24px rgba(37,211,102,.4);text-decoration:none;transition:all .25s;animation:wab 3s ease-in-out infinite}
+.wa-float:hover{transform:scale(1.1);animation:none}
+.wa-float svg{width:26px;height:26px;fill:white}
+@keyframes wab{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+/* REVEAL */
+.rev{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.rev.vis{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+/* TOAST */
+.toast{position:fixed;bottom:90px;right:28px;background:var(--dark);color:white;padding:13px 22px;border-radius:10px;font-family:var(--fu);font-size:13px;border-left:3px solid var(--gold);box-shadow:0 8px 24px rgba(0,0,0,.2);z-index:99999;transform:translateX(130%);transition:transform .4s cubic-bezier(.25,.46,.45,.94);pointer-events:none}
+.toast.show{transform:translateX(0)}
+/* BOTÓN EDITAR */
+#edit-fab{position:fixed;bottom:28px;left:28px;z-index:800;background:var(--dark);border:2px solid var(--gold);color:var(--gold);width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:20px;box-shadow:0 6px 20px rgba(0,0,0,.3);transition:all .25s}
+#edit-fab:hover{background:var(--gold);color:white;transform:scale(1.08)}
+/* PANEL EDICIÓN — por defecto CERRADO */
+#edit-panel{position:fixed;top:0;left:0;bottom:0;width:360px;background:#0a1520;border-right:1px solid rgba(42,122,111,.2);z-index:9000;flex-direction:column;overflow:hidden;box-shadow:4px 0 30px rgba(0,0,0,.5);display:none}
+#edit-panel.open{display:flex}
+.ep-head{background:var(--dark2);padding:16px 18px;border-bottom:1px solid rgba(42,122,111,.2);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.ep-head h2{font-family:var(--fd);font-size:13px;font-weight:600;color:var(--gold-light)}
+.ep-close{background:none;border:none;color:rgba(255,255,255,.5);font-size:22px;cursor:pointer;line-height:1;padding:2px 6px;transition:color .2s}
+.ep-close:hover{color:white}
+.ep-tabs{display:flex;background:rgba(13,27,42,.8);border-bottom:1px solid rgba(42,122,111,.15);flex-shrink:0;overflow-x:auto}
+.ep-tab{flex-shrink:0;padding:9px 10px;background:none;border:none;font-family:var(--fu);font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:rgba(255,255,255,.4);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap}
+.ep-tab.active{color:var(--gold-light);border-bottom-color:var(--gold-light)}
+.ep-body{overflow-y:auto;flex:1;padding:14px}
+.ep-body::-webkit-scrollbar{width:3px}
+.ep-body::-webkit-scrollbar-thumb{background:var(--gold-dim)}
+.ep-sec{font-family:var(--fd);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(61,158,145,.6);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid rgba(42,122,111,.15);margin-top:18px}
+.ep-sec:first-child{margin-top:0}
+.ep-f{margin-bottom:11px}
+.ep-f label{display:block;font-family:var(--fu);font-size:10px;color:rgba(255,255,255,.45);margin-bottom:4px}
+.ep-f input,.ep-f textarea,.ep-f select{width:100%;background:#0d1e30;border:1px solid rgba(42,122,111,.2);border-radius:6px;color:white;font-family:var(--fu);font-size:12px;padding:7px 9px;outline:none;transition:border-color .2s}
+.ep-f input:focus,.ep-f textarea:focus,.ep-f select:focus{border-color:var(--gold)}
+.ep-f textarea{resize:vertical;min-height:56px}
+.ep-toggle{display:flex;align-items:center;justify-content:space-between;padding:6px 0;margin-bottom:8px}
+.ep-toggle span{font-family:var(--fu);font-size:12px;color:rgba(255,255,255,.65)}
+.sw{position:relative;width:38px;height:20px;cursor:pointer;flex-shrink:0}
+.sw input{opacity:0;width:0;height:0;position:absolute}
+.sw-track{position:absolute;inset:0;background:#2a2520;border-radius:20px;transition:background .2s}
+.sw-knob{position:absolute;top:3px;left:3px;width:14px;height:14px;background:#555;border-radius:50%;transition:transform .2s,background .2s}
+.sw input:checked~.sw-track{background:var(--gold)}
+.sw input:checked~.sw-knob{transform:translateX(18px);background:white}
+.ep-footer-bar{padding:10px 14px;border-top:1px solid rgba(42,122,111,.15);flex-shrink:0;background:var(--dark2)}
+.ep-hint{font-family:var(--fu);font-size:10px;color:rgba(255,255,255,.25);text-align:center;line-height:1.5;margin-bottom:8px}
+.ep-save-btn{display:block;width:100%;padding:11px;background:var(--gold);color:white;border:none;border-radius:8px;font-family:var(--fu);font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:background .2s}
+.ep-save-btn:hover{background:var(--gold-light)}
+/* Paquete editable en panel */
+.pkg-edit-card{background:rgba(13,27,42,.5);border:1px solid rgba(42,122,111,.2);border-radius:8px;padding:12px;margin-bottom:12px}
+.pkg-edit-card-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.pkg-edit-card-head span{font-family:var(--fd);font-size:11px;color:var(--gold-dim);letter-spacing:.08em;text-transform:uppercase}
+.pkg-del-btn{background:#c0392b;color:white;border:none;padding:4px 10px;border-radius:2px;cursor:pointer;font-family:var(--fu);font-size:10px;text-transform:uppercase;transition:background .2s}
+.pkg-del-btn:hover{background:#e74c3c}
+.pkg-add-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:10px;background:transparent;border:1px dashed rgba(42,122,111,.4);border-radius:2px;color:rgba(42,122,111,.6);font-family:var(--fu);font-size:12px;cursor:pointer;transition:all .2s;margin-top:4px}
+.pkg-add-btn:hover{border-color:var(--gold-light);color:var(--gold-light)}
+/* ADMIN */
+#admin-panel{position:fixed;top:0;right:0;bottom:0;width:360px;background:#0a1520;border-left:1px solid rgba(42,122,111,.2);z-index:9001;flex-direction:column;overflow:hidden;box-shadow:-4px 0 30px rgba(0,0,0,.5);display:none}
+#admin-panel.open{display:flex}
+.adm-head{background:var(--dark2);padding:16px 18px;border-bottom:1px solid rgba(42,122,111,.2);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.adm-head h2{font-family:var(--fd);font-size:13px;font-weight:600;color:var(--gold-light)}
+.adm-login-box{padding:20px}
+.adm-login-box p{font-family:var(--fu);font-size:12px;color:rgba(255,255,255,.4);margin-bottom:12px}
+.adm-login-box input{width:100%;background:#0d1e30;border:1px solid rgba(42,122,111,.2);border-radius:8px;color:white;font-family:var(--fu);font-size:13px;padding:9px 11px;outline:none;margin-bottom:10px}
+.adm-login-box input:focus{border-color:var(--gold)}
+.adm-body{overflow-y:auto;flex:1;padding:14px}
+.adm-item{background:rgba(18,34,54,.8);border:1px solid rgba(42,122,111,.2);padding:14px;border-radius:8px;margin-bottom:10px}
+.adm-item-name{font-family:var(--fu);font-size:12px;font-weight:500;color:white;margin-bottom:3px}
+.adm-item-text{font-family:var(--fu);font-size:11px;color:rgba(255,255,255,.45);margin-bottom:8px;line-height:1.5}
+.del-btn{background:#c0392b;color:white;border:none;padding:5px 12px;border-radius:2px;cursor:pointer;font-family:var(--fu);font-size:11px;text-transform:uppercase;transition:background .2s}
+.del-btn:hover{background:#e74c3c}
+/* RESPONSIVE */
+@media(max-width:900px){
+  .nav-links,.btn-nav{display:none}.hamburger{display:flex}
+  .qe-grid{grid-template-columns:1fr;gap:36px}
+  .ben-grid{grid-template-columns:1fr 1fr}
+  .order-grid{grid-template-columns:1fr}
+  .test-grid{grid-template-columns:1fr 1fr}
+  .vid-grid{grid-template-columns:1fr}
+  .gal-grid{grid-template-columns:repeat(2,1fr)}
+  .frow{grid-template-columns:1fr}
+  #edit-panel,#admin-panel{width:100%;max-width:360px}
+}
+@media(max-width:600px){
+  section{padding:60px 18px}.ben-grid{grid-template-columns:1fr}
+  .test-grid{grid-template-columns:1fr}.gal-grid{grid-template-columns:repeat(2,1fr);gap:8px}
+  .wa-float{bottom:20px;right:20px;width:50px;height:50px}
+  #edit-fab{bottom:20px;left:20px;width:46px;height:46px}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== DATOS DEL SITIO (NO BORRAR ESTE SCRIPT) ===== -->
+<script id="site-data-script" type="application/json">{
+  "whatsapp": "3111228739",
+  "mercadopago": "https://mpago.la/TULINK",
+  "email": "memoria.eterna9@gmail.com",
+  "adminPwd": "admin2024",
+  "showMP": false,
+  "heroBadge": "✦  Un tributo que dura para siempre  ✦",
+  "heroSub": "Placas memoriales con código QR personalizado",
+  "heroDesc": "Honra a tus seres queridos con una placa física y bella que, al escanearse, abre una página web con su historia, fotos, videos y mensajes de amor — accesible para siempre desde cualquier celular.",
+  "heroBtn1": "Hacer un pedido",
+  "heroBtn2": "¿Cómo funciona?",
+  "queesTitulo": "Un recuerdo físico con alma digital",
+  "queesDesc": "Memoria Eterna combina una hermosa placa física con un código QR único que guarda la historia de tu ser querido en línea, para siempre.",
+  "step1": "Tú nos envías la información",
+  "step1d": "Nombre, fechas, fotos, videos, biografía y todo lo que quieras incluir en el memorial digital.",
+  "step2": "Nosotros creamos la página y la placa",
+  "step2d": "Diseñamos la página web memorial y grabamos el QR único en la placa con acabado premium.",
+  "step3": "La página vive para siempre, no es necesario hacer pagos extras",
+  "step3d": "Cualquier persona que escanee la placa accede al memorial completo desde cualquier lugar del mundo.\ny así de fácil el recuerdo de tus seres queridos vivirá por siempre.",
+  "ben1t": "Placa de acrílico en alta calidad (próximamente mármol)",
+  "ben1d": "Material resistente al tiempo y a la intemperie. Grabado láser preciso con acabado premium.",
+  "ben2t": "Página web personalizada",
+  "ben2d": "Diseño elegante con fotos, videos, biografía, galería y mensajes de recuerdo.",
+  "ben3t": "Permanencia eterna",
+  "ben3d": "La página memorial se mantiene en línea de forma indefinida. Tu ser querido siempre estará accesible.",
+  "ben4t": "Acceso desde cualquier celular",
+  "ben4d": "Solo escaneando el QR con la cámara. Sin apps, sin contraseñas, sin complicaciones.",
+  "ben5t": "Desde cualquier parte del mundo",
+  "ben5d": "Familia en el extranjero también puede visitar el memorial digital.",
+  "ben6t": "Actualizaciones ",
+  "ben6d": "Podemos agregar fotos, videos o mensajes nuevos en cualquier momento. Con pequeño costo extra,",
+  "vid1id": "dQw4w9WgXcQ",
+  "vid1title": "¿Cómo funciona Memoria Eterna?",
+  "vid1desc": "Explicación completa del servicio",
+  "showVid1": true,
+  "vid2id": "dQw4w9WgXcQ",
+  "vid2title": "Ejemplo de memorial completo",
+  "vid2desc": "Un recorrido por una página memorial",
+  "showVid2": true,
+  "linkFb": "https://www.facebook.com/MemoriaEternaQR/",
+  "linkIg": "",
+  "linkTt": "",
+  "linkYt": "",
+  "showFb": true,
+  "showIg": false,
+  "showTt": false,
+  "showWa": true,
+  "showYt": false,
+  "bankInfo": "Escríbenos y te mandamos los datos de cuenta. Horario: Lun–Sáb 9am–8pm",
+  "deliveryInfo": "Página memorial: 3–5 días hábiles. Placa física: 5–10 \nenvio a toda la republica y otros paises.",
+  "t1text": "La placa quedó preciosa. Cuando mi mamá la vio lloró de emoción. La página es muy completa y podemos entrar desde cualquier parte. Gracias infinitas.",
+  "t1name": "Rosa Méndez, CDMX",
+  "t1date": "Febrero 2025",
+  "t2text": "Mi papá falleció en octubre. El equipo fue muy atento y profesional. El resultado superó mis expectativas.",
+  "t2name": "Carlos Herrera, Guadalajara",
+  "t2date": "Enero 2025",
+  "t3text": "Pedimos el paquete Eterno para el nicho de mi abuela. La placa tiene su foto grabada y el QR lleva a una página hermosa.",
+  "t3name": "Martha González, Monterrey",
+  "t3date": "Marzo 2025",
+  "t4text": "Lo que más me gustó fue la atención personalizada. Me guiaron en cada paso y el resultado fue exactamente lo que imaginé.",
+  "t4name": "Lucía Ramírez, Puebla",
+  "t4date": "Diciembre 2024",
+  "t5text": "No sabía que existía este servicio. El precio es muy accesible para todo lo que incluye. Quedé muy satisfecha.",
+  "t5name": "Sofía Torres, Querétaro",
+  "t5date": "Noviembre 2024",
+  "t6text": "En menos de una hora ya me habían contactado. La placa llegó en perfectas condiciones con estuche elegante.",
+  "t6name": "Jorge Vega, León",
+  "t6date": "Octubre 2024",
+  "packages": [
+    {
+      "id": 1,
+      "name": "Esencial acrílico",
+      "price": "$ 1,600",
+      "period": "Pago único · Todo incluido",
+      "featured": true,
+      "features": [
+        "Placa de acrílico",
+        "Código QR grabado en láser",
+        "Página memorial",
+        "Hasta 10 fotos",
+        "1 video de YouTube",
+        "Permanencia en línea sin pagos extras o mensuales"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Placa grabada en Mármol (próximamente)",
+      "price": "",
+      "period": "Pago único · Todo incluido",
+      "featured": false,
+      "features": []
+    }
+  ],
+  "comments": []
+}</script>
+
+<!-- NAV -->
+<nav id="navbar" class="scrolled">
+  <div class="nav-logo"><span class="g">✦</span> <span id="nav-brand">MEMORIA ETERNA</span></div>
+  <ul class="nav-links">
+    <li><a href="#que-es">¿Qué es?</a></li><li><a href="#galeria">Ejemplos</a></li>
+    <li><a href="#costos">Costos</a></li><li><a href="#pedidos">Pedidos</a></li>
+    <li><a href="#testimonios">Opiniones</a></li><li><a href="#redes">Contacto</a></li>
+  </ul>
+  <a id="nav-cta" href="#pedidos" class="btn-nav">Cotizar</a>
+  <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+</nav>
+<div class="mob-menu" id="mob-menu">
+  <a href="#que-es" onclick="toggleMenu()">¿Qué es?</a><a href="#galeria" onclick="toggleMenu()">Ejemplos</a>
+  <a href="#costos" onclick="toggleMenu()">Costos</a><a href="#pedidos" onclick="toggleMenu()">Pedidos</a>
+  <a href="#testimonios" onclick="toggleMenu()">Opiniones</a><a href="#redes" onclick="toggleMenu()">Contacto</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-badge" id="hero-badge">✦  Un tributo que dura para siempre  ✦</div>
+  <h1 class="hero-title">MEMORIA<br><span class="g" id="hero-title-g">ETERNA</span></h1>
+  <p class="hero-sub" id="hero-sub">Placas memoriales con código QR personalizado</p>
+  <p class="hero-desc" id="hero-desc">Honra a tus seres queridos con una placa física y bella que, al escanearse, abre una página web con su historia, fotos, videos y mensajes de amor — accesible para siempre desde cualquier celular.</p>
+  <div class="hero-btns">
+    <a href="#pedidos" class="btn-p" id="hero-btn1">Hacer un pedido</a>
+    <a href="#que-es" class="btn-o" id="hero-btn2">¿Cómo funciona?</a>
+  </div>
+  <div class="hero-scroll">SCROLL</div>
+</section>
+
+<!-- QUÉ ES -->
+<section id="que-es">
+  <div class="cont">
+    <div class="qe-grid">
+      <div>
+        <p class="stag rev vis">¿Cómo funciona?</p>
+        <h2 class="stitle rev d1 vis" id="quees-title">Un recuerdo físico con alma digital</h2>
+        <div class="divider rev d2 vis"></div>
+        <p class="sdesc rev d2 vis" id="quees-desc">Memoria Eterna combina una hermosa placa física con un código QR único que guarda la historia de tu ser querido en línea, para siempre.</p>
+        <div class="steps rev d3 vis">
+          <div class="step"><div class="step-n">1</div><div><h3 id="step1-t">Tú nos envías la información</h3><p id="step1-d">Nombre, fechas, fotos, videos, biografía y todo lo que quieras incluir en el memorial digital.</p></div></div>
+          <div class="step"><div class="step-n">2</div><div><h3 id="step2-t">Nosotros creamos la página y la placa</h3><p id="step2-d">Diseñamos la página web memorial y grabamos el QR único en la placa con acabado premium.</p></div></div>
+          <div class="step"><div class="step-n">3</div><div><h3 id="step3-t">La página vive para siempre, no es necesario hacer pagos extras</h3><p id="step3-d">Cualquier persona que escanee la placa accede al memorial completo desde cualquier lugar del mundo.
+y así de fácil el recuerdo de tus seres queridos vivirá por siempre.</p></div></div>
+        </div>
+      </div>
+      <div class="qe-visual rev d2 vis">
+        <div class="qr-box"><svg viewBox="0 0 80 80" fill="none"><rect x="4" y="4" width="28" height="28" rx="2" fill="none" stroke="#2a7a6f" stroke-width="3"></rect><rect x="10" y="10" width="16" height="16" fill="#2a7a6f" rx="1"></rect><rect x="48" y="4" width="28" height="28" rx="2" fill="none" stroke="#2a7a6f" stroke-width="3"></rect><rect x="54" y="10" width="16" height="16" fill="#2a7a6f" rx="1"></rect><rect x="4" y="48" width="28" height="28" rx="2" fill="none" stroke="#2a7a6f" stroke-width="3"></rect><rect x="10" y="54" width="16" height="16" fill="#2a7a6f" rx="1"></rect><rect x="48" y="48" width="6" height="6" fill="#2a7a6f"></rect><rect x="58" y="48" width="6" height="6" fill="#2a7a6f"></rect><rect x="68" y="48" width="6" height="6" fill="#2a7a6f"></rect><rect x="48" y="58" width="6" height="6" fill="#2a7a6f"></rect><rect x="62" y="58" width="12" height="6" fill="#2a7a6f"></rect><rect x="48" y="68" width="16" height="6" fill="#2a7a6f"></rect><rect x="68" y="64" width="6" height="10" fill="#2a7a6f"></rect></svg></div>
+        <p>Escanea → Recuerda</p>
+        <small>El código QR lleva a la página memorial personalizada</small>
+        <div class="qe-stats">
+          <div><div class="qe-stat-v">∞</div><div class="qe-stat-l">Para siempre</div></div>
+          <div><div class="qe-stat-v">📱</div><div class="qe-stat-l">Desde celular</div></div>
+          <div><div class="qe-stat-v">🌍</div><div class="qe-stat-l">Todo el mundo</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFICIOS -->
+<section id="beneficios">
+  <div class="cont">
+    <p class="stag rev vis" style="text-align:center">¿Por qué elegirnos?</p>
+    <h2 class="stitle rev d1 vis" style="text-align:center">Todo lo que incluye Memoria Eterna</h2>
+    <div class="ben-grid rev d2 vis">
+      <div class="ben-card"><div class="ben-icon">🏅</div><div class="ben-title" id="ben1-t">Placa de acrílico en alta calidad (próximamente mármol)</div><p class="ben-text" id="ben1-d">Material resistente al tiempo y a la intemperie. Grabado láser preciso con acabado premium.</p></div>
+      <div class="ben-card"><div class="ben-icon">📄</div><div class="ben-title" id="ben2-t">Página web personalizada</div><p class="ben-text" id="ben2-d">Diseño elegante con fotos, videos, biografía, galería y mensajes de recuerdo.</p></div>
+      <div class="ben-card"><div class="ben-icon">∞</div><div class="ben-title" id="ben3-t">Permanencia eterna</div><p class="ben-text" id="ben3-d">La página memorial se mantiene en línea de forma indefinida. Tu ser querido siempre estará accesible.</p></div>
+      <div class="ben-card"><div class="ben-icon">📱</div><div class="ben-title" id="ben4-t">Acceso desde cualquier celular</div><p class="ben-text" id="ben4-d">Solo escaneando el QR con la cámara. Sin apps, sin contraseñas, sin complicaciones.</p></div>
+      <div class="ben-card"><div class="ben-icon">🌐</div><div class="ben-title" id="ben5-t">Desde cualquier parte del mundo</div><p class="ben-text" id="ben5-d">Familia en el extranjero también puede visitar el memorial digital.</p></div>
+      <div class="ben-card"><div class="ben-icon">✏️</div><div class="ben-title" id="ben6-t">Actualizaciones </div><p class="ben-text" id="ben6-d">Podemos agregar fotos, videos o mensajes nuevos en cualquier momento. Con pequeño costo extra,</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERÍA -->
+<section id="galeria">
+  <div class="cont">
+    <div class="gal-intro">
+      <p class="stag rev vis">Ejemplos reales</p>
+      <h2 class="stitle rev d1 vis">Mira lo que creamos</h2>
+      <p class="sdesc rev d2 vis" style="margin:0 auto">Cada memorial es único. Aquí algunos ejemplos de placas y páginas que hemos creado.</p>
+    </div>
+    <div class="gal-grid rev d2 vis">
+      <div class="gal-item" onclick="openLb(this)"><div class="gal-ph" style="background:linear-gradient(135deg,#0d1b2a,#1a3048)"><span>🏅</span><p>Placa bronce<br>grabado láser</p></div><div class="gal-lbl">Placa Memorial Clásica</div></div>
+      <div class="gal-item" onclick="openLb(this)"><div class="gal-ph" style="background:linear-gradient(135deg,#122236,#0d1b2a)"><span>📱</span><p>Página memorial<br>en celular</p></div><div class="gal-lbl">Página Memorial Digital</div></div>
+      <div class="gal-item" onclick="openLb(this)"><div class="gal-ph" style="background:linear-gradient(135deg,#1a3048,#0d1b2a)"><span>⚱️</span><p>Placa para<br>nicho o tumba</p></div><div class="gal-lbl">Placa para Nicho</div></div>
+      <div class="gal-item" onclick="openLb(this)"><div class="gal-ph" style="background:linear-gradient(135deg,#0f2438,#1a3048)"><span>🌳</span><p>Placa para<br>jardín o árbol</p></div><div class="gal-lbl">Placa para Jardín</div></div>
+      <div class="gal-item" onclick="openLb(this)"><div class="gal-ph" style="background:linear-gradient(135deg,#112030,#0d1b2a)"><span>🖼️</span><p>Con foto<br>grabada</p></div><div class="gal-lbl">Placa con Fotografía</div></div>
+      <div class="gal-item" onclick="openLb(this)"><div class="gal-ph" style="background:linear-gradient(135deg,#14293d,#1a3048)"><span>✨</span><p>Acabado<br>premium oro</p></div><div class="gal-lbl">Acabado Premium Dorado</div></div>
+    </div>
+  </div>
+</section>
+<div id="lightbox"><button id="lb-close" onclick="closeLb()">✕</button><img id="lb-img" src="" alt=""></div>
+
+<!-- VIDEOS -->
+<section id="videos">
+  <div class="cont">
+    <p class="stag rev vis">Conoce más</p>
+    <h2 class="stitle rev d1 vis">Videos informativos</h2>
+    <p class="sdesc rev d2 vis">Mira cómo funciona un memorial digital y ejemplos reales.</p>
+    <div class="vid-grid rev d2 vis" id="vid-container"><div class="vid-card" id="vid1-card"><div class="vid-wrap"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&amp;modestbranding=1" title="¿Cómo funciona Memoria Eterna?" allowfullscreen="" loading="lazy"></iframe></div><div class="vid-info"><h3>¿Cómo funciona Memoria Eterna?</h3><p>Explicación completa del servicio</p></div></div><div class="vid-card" id="vid2-card"><div class="vid-wrap"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&amp;modestbranding=1" title="Ejemplo de memorial completo" allowfullscreen="" loading="lazy"></iframe></div><div class="vid-info"><h3>Ejemplo de memorial completo</h3><p>Un recorrido por una página memorial</p></div></div></div>
+  </div>
+</section>
+
+<!-- PRECIOS -->
+<section id="costos">
+  <div class="cont">
+    <p class="stag rev vis" style="text-align:center">Transparencia total</p>
+    <h2 class="stitle rev d1 vis" style="text-align:center">Paquetes y costos</h2>
+    <p class="sdesc rev d2" style="margin:0 auto;text-align:center">Sin costos ocultos ni sorpresas. Elige el paquete que mejor honre a tu ser querido.</p>
+    <div class="price-grid rev d2" id="price-container"><div class="price-card feat" id="pkg-1"><div class="price-badge">Más Popular</div><div class="price-name">Esencial acrílico</div><div class="price-amount"><span class="cur">$</span>$ 1,600</div><div class="price-period">Pago único · Todo incluido</div><ul class="price-feats"><li>Placa de acrílico</li><li>Código QR grabado en láser</li><li>Página memorial</li><li>Hasta 10 fotos</li><li>1 video de YouTube</li><li>Permanencia en línea sin pagos extras o mensuales</li></ul><button onclick="goOrder('Esencial acrílico')" class="btn-price">Elegir Esencial acrílico</button></div><div class="price-card " id="pkg-2"><div class="price-name">Placa grabada en Mármol (próximamente)</div><div class="price-amount"><span class="cur">$</span></div><div class="price-period">Pago único · Todo incluido</div><ul class="price-feats"></ul><button onclick="goOrder('Placa grabada en Mármol (próximamente)')" class="btn-price-o">Elegir Placa grabada en Mármol (próximamente)</button></div></div>
+    <p style="text-align:center;margin-top:26px;font-family:var(--fu);font-size:12px;color:rgba(255,255,255,.35)" id="cost-note"></p>
+  </div>
+</section>
+
+<!-- PEDIDOS -->
+<section id="pedidos">
+  <div class="cont">
+    <p class="stag rev">Quiero hacer un pedido</p>
+    <h2 class="stitle rev d1">Realiza tu pedido</h2>
+    <p class="sdesc rev d2">Llena el formulario y nos ponemos en contacto contigo en menos de 24 horas.</p>
+    <div class="order-grid rev d2">
+      <div class="order-form">
+        <h3>Formulario de pedido</h3>
+        <div class="fg"><label>Tu nombre completo *</label><input type="text" id="o-name" placeholder="Ej: Ana García López"></div>
+        <div class="frow">
+          <div class="fg"><label>Teléfono / WhatsApp *</label><input type="tel" id="o-phone" placeholder="55 1234 5678"></div>
+          <div class="fg"><label>Correo electrónico *</label><input type="email" id="o-email" placeholder="tu@correo.com"></div>
+        </div>
+        <div class="fg"><label>Paquete que deseas *</label><select id="o-pkg"><option value="">— Selecciona —</option><option value="Esencial acrílico">Esencial acrílico — $$ 1,600 MXN</option><option value="Placa grabada en Mármol (próximamente)">Placa grabada en Mármol (próximamente) — $ MXN</option></select></div>
+        <div class="fg"><label>Nombre del ser querido a honrar</label><input type="text" id="o-person" placeholder="Nombre completo"></div>
+        <div class="fg"><label>Mensaje adicional</label><textarea id="o-msg" placeholder="Cuéntanos lo que necesitas..."></textarea></div>
+        <div class="fg"><label>Método de pago</label>
+          <div class="pay-opts">
+            <label class="pay-opt"><input type="radio" name="pay" value="tarjeta" checked=""> 💳 Tarjeta</label>
+            <label class="pay-opt"><input type="radio" name="pay" value="transferencia"> 🏦 Transferencia</label>
+            <label class="pay-opt" id="mp-radio-w" style="display: none;"><input type="radio" name="pay" value="mercadopago"> 💙 Mercado Pago</label>
+          </div>
+        </div>
+        <button onclick="submitOrder()" class="btn-p" style="width:100%;margin-top:18px;padding:14px;font-size:13px">✦ &nbsp;Enviar solicitud de pedido</button>
+        <p style="font-family:var(--fu);font-size:11px;color:var(--text-soft);text-align:center;margin-top:10px">Al enviar te contactaremos para confirmar tu pedido.</p>
+      </div>
+      <div class="order-side">
+        <div class="side-card">
+          <h4>💬 Escríbenos por WhatsApp</h4>
+          <p id="wa-desc">Atención inmediata para resolver todas tus dudas.</p>
+          <a id="wa-order-btn" href="https://wa.me/3111228739?text=Hola%2C%20quiero%20información%20sobre%20Memoria%20Eterna" target="_blank" class="wa-btn-style">
+            <svg style="width:20px;height:20px;fill:white;flex-shrink:0" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"></path><path d="M12 0C5.373 0 0 5.373 0 12c0 2.132.558 4.133 1.528 5.868L0 24l6.335-1.508A11.956 11.956 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.659-.5-5.19-1.374l-.372-.221-3.764.895.952-3.659-.242-.384A9.946 9.946 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"></path></svg>
+            Escribir por WhatsApp
+          </a>
+        </div>
+        <div class="side-card" id="mp-side" style="display: none;">
+          <h4>💙 Mercado Pago</h4><p>Pago seguro con tarjeta, débito o saldo MP.</p>
+          <a id="mp-btn" href="https://mpago.la/TULINK" target="_blank" class="mp-btn-style">
+            <svg width="20" height="20" viewBox="0 0 40 40"><circle cx="20" cy="20" r="20" fill="#009ee3"></circle><text x="50%" y="56%" dominant-baseline="middle" text-anchor="middle" font-size="18" fill="white" font-family="Arial" font-weight="bold">MP</text></svg>
+            Pagar con Mercado Pago
+          </a>
+        </div>
+        <div class="side-card"><h4>🏦 Transferencia bancaria</h4><p id="bank-info">Escríbenos y te mandamos los datos de cuenta. Horario: Lun–Sáb 9am–8pm</p></div>
+        <div class="side-card"><h4>⏱ Tiempo de entrega</h4><p id="delivery-info">Página memorial: 3–5 días hábiles. Placa física: 5–10 
+envio a toda la republica y otros paises.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section id="testimonios">
+  <div class="cont">
+    <div class="test-intro">
+      <p class="stag rev">Opiniones de clientes</p>
+      <h2 class="stitle rev d1">Testimonios reales</h2>
+      <p class="sdesc rev d2" style="margin:0 auto">Familias que confiaron en Memoria Eterna para honrar a sus seres queridos.</p>
+    </div>
+    <div class="test-grid rev d2" id="testimonios-grid"><div class="test-card"><div class="test-stars">★★★★★</div><p class="test-text">La placa quedó preciosa. Cuando mi mamá la vio lloró de emoción. La página es muy completa y podemos entrar desde cualquier parte. Gracias infinitas.</p><div class="test-author"><div class="test-avatar">R</div><div><div class="test-name">Rosa Méndez, CDMX</div><div class="test-date">Febrero 2025</div></div></div></div><div class="test-card"><div class="test-stars">★★★★★</div><p class="test-text">Mi papá falleció en octubre. El equipo fue muy atento y profesional. El resultado superó mis expectativas.</p><div class="test-author"><div class="test-avatar">C</div><div><div class="test-name">Carlos Herrera, Guadalajara</div><div class="test-date">Enero 2025</div></div></div></div><div class="test-card"><div class="test-stars">★★★★★</div><p class="test-text">Pedimos el paquete Eterno para el nicho de mi abuela. La placa tiene su foto grabada y el QR lleva a una página hermosa.</p><div class="test-author"><div class="test-avatar">M</div><div><div class="test-name">Martha González, Monterrey</div><div class="test-date">Marzo 2025</div></div></div></div><div class="test-card"><div class="test-stars">★★★★★</div><p class="test-text">Lo que más me gustó fue la atención personalizada. Me guiaron en cada paso y el resultado fue exactamente lo que imaginé.</p><div class="test-author"><div class="test-avatar">L</div><div><div class="test-name">Lucía Ramírez, Puebla</div><div class="test-date">Diciembre 2024</div></div></div></div><div class="test-card"><div class="test-stars">★★★★★</div><p class="test-text">No sabía que existía este servicio. El precio es muy accesible para todo lo que incluye. Quedé muy satisfecha.</p><div class="test-author"><div class="test-avatar">S</div><div><div class="test-name">Sofía Torres, Querétaro</div><div class="test-date">Noviembre 2024</div></div></div></div><div class="test-card"><div class="test-stars">★★★★★</div><p class="test-text">En menos de una hora ya me habían contactado. La placa llegó en perfectas condiciones con estuche elegante.</p><div class="test-author"><div class="test-avatar">J</div><div><div class="test-name">Jorge Vega, León</div><div class="test-date">Octubre 2024</div></div></div></div></div>
+    <h3 style="font-family:var(--fd);font-size:22px;text-align:center;color:var(--dark);margin-bottom:10px;letter-spacing:.04em">Deja tu comentario</h3>
+    <p style="font-family:var(--fu);font-size:13px;color:var(--text-soft);text-align:center;margin-bottom:26px">¿Ya usaste nuestro servicio? Comparte tu experiencia.</p>
+    <div class="comment-form-box">
+      <div class="fg"><label>Tu nombre y ciudad</label><input type="text" id="cn-name" placeholder="Ej: Ana García, CDMX"></div>
+      <div class="fg"><label>Calificación</label><select id="cn-stars"><option value="5">★★★★★ Excelente</option><option value="4">★★★★☆ Muy bueno</option><option value="3">★★★☆☆ Bueno</option></select></div>
+      <div class="fg"><label>Tu comentario</label><textarea id="cn-text" placeholder="Cuéntanos tu experiencia..." style="min-height:100px"></textarea></div>
+      <button onclick="submitComment()" class="btn-p" style="width:100%;padding:14px">Publicar comentario</button>
+    </div>
+    <div id="pub-comments" style="margin-top:32px"><p style="font-family:var(--fu);font-size:13px;color:var(--text-soft);text-align:center">Sé el primero en dejar un comentario.</p></div>
+  </div>
+</section>
+
+<!-- REDES -->
+<section id="redes">
+  <div class="cont">
+    <p class="stag rev" style="text-align:center">Síguenos</p>
+    <h2 class="stitle rev d1">Encuéntranos en redes</h2>
+    <div class="redes-grid rev d2" id="redes-grid"><a href="https://www.facebook.com/MemoriaEternaQR/" target="_blank" class="red-card"><div class="red-icon">📘</div><div class="red-name">Facebook</div></a><a href="https://wa.me/3111228739" target="_blank" class="red-card"><div class="red-icon">💬</div><div class="red-name">WhatsApp</div></a></div>
+    <div style="text-align:center;margin-top:48px" class="rev d3">
+      <p style="font-family:var(--fu);font-size:14px;color:rgba(255,255,255,.5);margin-bottom:20px">¿Tienes alguna pregunta? Escríbenos directamente</p>
+      <a id="redes-wa-btn" href="https://wa.me/3111228739?text=Hola%2C%20quiero%20información%20sobre%20Memoria%20Eterna" target="_blank" class="btn-p">💬 &nbsp;Contactar por WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-logo">✦ MEMORIA ETERNA</div>
+  <div class="foot-links"><a href="#que-es">¿Cómo funciona?</a><a href="#costos">Precios</a><a href="#pedidos">Hacer un pedido</a><a href="#testimonios">Opiniones</a></div>
+  <p class="foot-text">© 2025 Memoria Eterna · Todos los derechos reservados<br>
+    <a id="foot-email-link" href="mailto:memoria.eterna9@gmail.com" style="color:rgba(255,255,255,.4)"><span id="foot-email">memoria.eterna9@gmail.com</span></a>
+  </p>
+  <p style="font-family:var(--fu);font-size:10px;color:rgba(255,255,255,.06);margin-top:16px;cursor:default;user-select:none" onclick="footClick()">· · ·</p>
+</footer>
+
+<!-- WA FLOTANTE -->
+<a id="wa-float" href="https://wa.me/3111228739?text=Hola%2C%20quiero%20información%20sobre%20Memoria%20Eterna" target="_blank" class="wa-float" title="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"></path><path d="M12 0C5.373 0 0 5.373 0 12c0 2.132.558 4.133 1.528 5.868L0 24l6.335-1.508A11.956 11.956 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.659-.5-5.19-1.374l-.372-.221-3.764.895.952-3.659-.242-.384A9.946 9.946 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"></path></svg>
+</a>
+
+<!-- BOTÓN EDITAR -->
+<button id="edit-fab" onclick="openEditor()" title="Editar página">✏️</button>
+<div class="toast" id="toast">Paquete eliminado</div>
+
+<!-- PANEL DE EDICIÓN -->
+<div id="edit-panel" class="">
+  <div class="ep-head"><h2>✏️ Panel de edición</h2><button class="ep-close" onclick="closeEditor()">✕</button></div>
+  <div class="ep-tabs">
+    <button class="ep-tab" onclick="switchTab('contacto',this)">Contacto</button>
+    <button class="ep-tab" onclick="switchTab('inicio',this)">Inicio</button>
+    <button class="ep-tab" onclick="switchTab('precios',this)">Precios</button>
+    <button class="ep-tab" onclick="switchTab('videos',this)">Videos</button>
+    <button class="ep-tab" onclick="switchTab('opiniones',this)">Opiniones</button>
+    <button class="ep-tab active" onclick="switchTab('redes',this)">Redes</button>
+  </div>
+  <div class="ep-body" id="ep-body"><div class="ep-sec">📲 Redes sociales</div><div class="ep-toggle"><span>Mostrar Facebook</span><label class="sw"><input type="checkbox" data-key="showFb" checked="" onchange="lu(this)"><div class="sw-track"></div><div class="sw-knob"></div></label></div><div class="ep-f"><label>Link de Facebook</label><input type="text" data-key="linkFb" value="" placeholder="https://facebook.com/tupagina" oninput="lu(this)"></div><div class="ep-toggle"><span>Mostrar Instagram</span><label class="sw"><input type="checkbox" data-key="showIg" checked="" onchange="lu(this)"><div class="sw-track"></div><div class="sw-knob"></div></label></div><div class="ep-f"><label>Link de Instagram</label><input type="text" data-key="linkIg" value="" placeholder="https://instagram.com/usuario" oninput="lu(this)"></div><div class="ep-toggle"><span>Mostrar TikTok</span><label class="sw"><input type="checkbox" data-key="showTt" checked="" onchange="lu(this)"><div class="sw-track"></div><div class="sw-knob"></div></label></div><div class="ep-f"><label>Link de TikTok</label><input type="text" data-key="linkTt" value="" placeholder="https://tiktok.com/@usuario" oninput="lu(this)"></div><div class="ep-toggle"><span>Mostrar WhatsApp en redes</span><label class="sw"><input type="checkbox" data-key="showWa" checked="" onchange="lu(this)"><div class="sw-track"></div><div class="sw-knob"></div></label></div><div class="ep-toggle"><span>Mostrar YouTube</span><label class="sw"><input type="checkbox" data-key="showYt" checked="" onchange="lu(this)"><div class="sw-track"></div><div class="sw-knob"></div></label></div><div class="ep-f"><label>Link de YouTube</label><input type="text" data-key="linkYt" value="" placeholder="https://youtube.com/@canal" oninput="lu(this)"></div></div>
+  <div class="ep-footer-bar">
+    <div class="ep-hint">Los cambios se ven en tiempo real.<br>Presiona <strong style="color:var(--gold)">Descargar HTML</strong> para guardar el archivo con todos tus cambios.</div>
+    <button class="ep-save-btn" onclick="downloadHTML()">⬇ &nbsp;Descargar HTML actualizado</button>
+  </div>
+</div>
+
+<!-- PANEL ADMIN -->
+<div id="admin-panel">
+  <div class="adm-head"><h2>🔐 Panel administrador</h2><button class="ep-close" onclick="closeAdmin()">✕</button></div>
+  <div id="adm-login-box" class="adm-login-box">
+    <p>Ingresa tu contraseña de administrador:</p>
+    <input type="password" id="adm-pwd" placeholder="Contraseña" onkeydown="if(event.key==='Enter')adminLogin()">
+    <button onclick="adminLogin()" class="btn-p" style="width:100%;padding:10px">Entrar</button>
+    <p style="font-family:var(--fu);font-size:10px;color:rgba(255,255,255,.2);margin-top:10px;text-align:center">Contraseña predeterminada: <strong>admin2024</strong><br>Cámbiala en Panel de edición → Contacto</p>
+  </div>
+  <div id="adm-content" style="display:none;flex-direction:column;flex:1;overflow:hidden">
+    <div style="padding:12px 14px;border-bottom:1px solid var(--border);flex-shrink:0"><p style="font-family:var(--fu);font-size:12px;color:rgba(255,255,255,.4)">Elimina comentarios de visitantes.</p></div>
+    <div class="adm-body" id="adm-list"></div>
+  </div>
+</div>
+
+<script>
+// ================================================================
+// CARGA DE DATOS DESDE EL SCRIPT EMBEBIDO EN EL HTML
+// ================================================================
+var D = JSON.parse(document.getElementById('site-data-script').textContent);
+
+function saveToScript() {
+  document.getElementById('site-data-script').textContent = JSON.stringify(D, null, 2);
+}
+
+// ================================================================
+// RENDERIZADO DE LA PÁGINA
+// ================================================================
+function tx(id, val) { var e = document.getElementById(id); if (e && val !== undefined) e.textContent = val; }
+function xs(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function renderAll() {
+  // WhatsApp links
+  var waBase = 'https://wa.me/' + D.whatsapp;
+  var waMsg  = waBase + '?text=Hola%2C%20quiero%20información%20sobre%20Memoria%20Eterna';
+  ['wa-order-btn','wa-float','redes-wa-btn'].forEach(function(id){var e=document.getElementById(id);if(e)e.href=waMsg;});
+
+  // Mercado Pago
+  var mpBtn  = document.getElementById('mp-btn');   if(mpBtn)  mpBtn.href  = D.mercadopago;
+  var mpSide = document.getElementById('mp-side');  if(mpSide) mpSide.style.display = D.showMP ? '' : 'none';
+  var mpR    = document.getElementById('mp-radio-w'); if(mpR)  mpR.style.display    = D.showMP ? '' : 'none';
+
+  // Email
+  tx('foot-email', D.email);
+  var fl = document.getElementById('foot-email-link'); if(fl) fl.href = 'mailto:' + D.email;
+
+  // Hero
+  tx('hero-badge', D.heroBadge); tx('hero-sub', D.heroSub); tx('hero-desc', D.heroDesc);
+  tx('hero-btn1', D.heroBtn1); tx('hero-btn2', D.heroBtn2);
+
+  // Qué es
+  tx('quees-title', D.queesTitulo); tx('quees-desc', D.queesDesc);
+  tx('step1-t', D.step1); tx('step1-d', D.step1d);
+  tx('step2-t', D.step2); tx('step2-d', D.step2d);
+  tx('step3-t', D.step3); tx('step3-d', D.step3d);
+
+  // Beneficios
+  for(var i=1;i<=6;i++){ tx('ben'+i+'-t',D['ben'+i+'t']); tx('ben'+i+'-d',D['ben'+i+'d']); }
+
+  // Info contacto
+  tx('bank-info', D.bankInfo); tx('delivery-info', D.deliveryInfo);
+
+  // Testimonios (estáticos)
+  var tg = document.getElementById('testimonios-grid');
+  if(tg) {
+    var thtml = '';
+    for(var t=1;t<=6;t++){
+      thtml += '<div class="test-card"><div class="test-stars">★★★★★</div>' +
+        '<p class="test-text">'+xs(D['t'+t+'text'])+'</p>' +
+        '<div class="test-author"><div class="test-avatar">'+xs(D['t'+t+'name'].charAt(0).toUpperCase())+'</div>' +
+        '<div><div class="test-name">'+xs(D['t'+t+'name'])+'</div><div class="test-date">'+xs(D['t'+t+'date'])+'</div></div></div></div>';
+    }
+    tg.innerHTML = thtml;
+  }
+
+  // Videos
+  renderVideos();
+
+  // Precios
+  renderPrices();
+
+  // Redes
+  renderRedes(waBase);
+
+  // Select de paquetes en pedido
+  var sel = document.getElementById('o-pkg');
+  if(sel){
+    var opts = '<option value="">— Selecciona —</option>';
+    D.packages.forEach(function(p){ opts += '<option value="'+xs(p.name)+'">'+xs(p.name)+' — $'+xs(p.price)+' MXN</option>'; });
+    sel.innerHTML = opts;
+  }
+
+  // Comentarios públicos
+  renderPubComments();
+}
+
+function renderVideos(){
+  var vc = document.getElementById('vid-container'); if(!vc) return;
+  var html = '';
+  if(D.showVid1) html += vidCard('vid1', D.vid1id, D.vid1title, D.vid1desc);
+  if(D.showVid2) html += vidCard('vid2', D.vid2id, D.vid2title, D.vid2desc);
+  vc.innerHTML = html;
+}
+function vidCard(id, ytId, title, desc){
+  return '<div class="vid-card" id="'+id+'-card"><div class="vid-wrap">' +
+    '<iframe src="https://www.youtube.com/embed/'+xs(ytId)+'?rel=0&modestbranding=1" title="'+xs(title)+'" allowfullscreen loading="lazy"></iframe>' +
+    '</div><div class="vid-info"><h3>'+xs(title)+'</h3><p>'+xs(desc)+'</p></div></div>';
+}
+
+function renderPrices(){
+  var pc = document.getElementById('price-container'); if(!pc) return;
+  var html = '';
+  D.packages.forEach(function(p){
+    var feats = p.features.map(function(f){ return '<li>'+xs(f)+'</li>'; }).join('');
+    var btnClass = p.featured ? 'btn-price' : 'btn-price-o';
+    var badge = p.featured ? '<div class="price-badge">Más Popular</div>' : '';
+    html += '<div class="price-card '+(p.featured?'feat':'')+'" id="pkg-'+p.id+'">'+badge+
+      '<div class="price-name">'+xs(p.name)+'</div>'+
+      '<div class="price-amount"><span class="cur">$</span>'+xs(p.price)+'</div>'+
+      '<div class="price-period">'+xs(p.period)+'</div>'+
+      '<ul class="price-feats">'+feats+'</ul>'+
+      '<button onclick="goOrder(\''+xs(p.name)+'\')" class="'+btnClass+'">Elegir '+xs(p.name)+'</button>'+
+      '</div>';
+  });
+  pc.innerHTML = html;
+}
+
+function renderRedes(waBase){
+  var rg = document.getElementById('redes-grid'); if(!rg) return;
+  var redes = [
+    {id:'fb', show:D.showFb, href:D.linkFb||'#', icon:'📘', name:'Facebook'},
+    {id:'ig', show:D.showIg, href:D.linkIg||'#', icon:'📸', name:'Instagram'},
+    {id:'tt', show:D.showTt, href:D.linkTt||'#', icon:'🎵', name:'TikTok'},
+    {id:'wa', show:D.showWa, href:waBase, icon:'💬', name:'WhatsApp'},
+    {id:'yt', show:D.showYt, href:D.linkYt||'#', icon:'▶️', name:'YouTube'},
+  ];
+  rg.innerHTML = redes.filter(function(r){return r.show;})
+    .map(function(r){ return '<a href="'+xs(r.href)+'" target="_blank" class="red-card"><div class="red-icon">'+r.icon+'</div><div class="red-name">'+r.name+'</div></a>'; })
+    .join('');
+}
+
+// ================================================================
+// PANEL DE EDICIÓN
+// ================================================================
+var curTab = 'contacto';
+
+function f(key, label, val, ph) {
+  return '<div class="ep-f"><label>'+label+'</label>' +
+    '<input type="text" data-key="'+key+'" value="'+xq(val||'')+'" placeholder="'+(ph||'')+'" oninput="lu(this)"></div>';
+}
+function fa(key, label, val) {
+  return '<div class="ep-f"><label>'+label+'</label>' +
+    '<textarea data-key="'+key+'" oninput="lu(this)">'+xq(val||'')+'</textarea></div>';
+}
+function ft(key, label, val) {
+  return '<div class="ep-toggle"><span>'+label+'</span>' +
+    '<label class="sw"><input type="checkbox" data-key="'+key+'" '+(val?'checked':'')+' onchange="lu(this)">' +
+    '<div class="sw-track"></div><div class="sw-knob"></div></label></div>';
+}
+function fp(key, label, val) {
+  return '<div class="ep-f"><label>'+label+'</label>' +
+    '<input type="password" data-key="'+key+'" value="'+xq(val||'')+'" oninput="lu(this)"></div>';
+}
+function xq(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;'); }
+
+var TABS = {
+  contacto: function() {
+    return '<div class="ep-sec">📞 WhatsApp y pagos</div>'+
+      f('whatsapp','Número WhatsApp (con código de país)',D.whatsapp,'Ej: 5215512345678')+
+      f('email','Correo electrónico de contacto',D.email)+
+      ft('showMP','Mostrar botón de Mercado Pago',D.showMP)+
+      f('mercadopago','Link de Mercado Pago',D.mercadopago,'https://mpago.la/TULINK')+
+      '<div class="ep-sec">🏦 Textos de pago</div>'+
+      fa('bankInfo','Texto sobre transferencia bancaria',D.bankInfo)+
+      fa('deliveryInfo','Texto de tiempo de entrega',D.deliveryInfo)+
+      '<div class="ep-sec">🔐 Seguridad</div>'+
+      fp('adminPwd','Contraseña del panel administrador',D.adminPwd);
+  },
+  inicio: function() {
+    return '<div class="ep-sec">🏠 Portada principal</div>'+
+      f('heroBadge','Texto de la etiqueta superior',D.heroBadge)+
+      f('heroSub','Subtítulo en cursiva',D.heroSub)+
+      fa('heroDesc','Descripción principal',D.heroDesc)+
+      f('heroBtn1','Botón principal (texto)',D.heroBtn1)+
+      f('heroBtn2','Botón secundario (texto)',D.heroBtn2)+
+      '<div class="ep-sec">📋 Sección "¿Cómo funciona?"</div>'+
+      f('queesTitulo','Título de la sección',D.queesTitulo)+
+      fa('queesDesc','Descripción de la sección',D.queesDesc)+
+      f('step1','Paso 1 — título',D.step1)+fa('step1d','Paso 1 — descripción',D.step1d)+
+      f('step2','Paso 2 — título',D.step2)+fa('step2d','Paso 2 — descripción',D.step2d)+
+      f('step3','Paso 3 — título',D.step3)+fa('step3d','Paso 3 — descripción',D.step3d)+
+      '<div class="ep-sec">🏅 Beneficios (6 tarjetas)</div>'+
+      [1,2,3,4,5,6].map(function(i){
+        return f('ben'+i+'t','Beneficio '+i+' — título',D['ben'+i+'t'])+fa('ben'+i+'d','Beneficio '+i+' — descripción',D['ben'+i+'d']);
+      }).join('');
+  },
+  precios: function() {
+    var html = '<div class="ep-sec">💰 Paquetes de precios</div>';
+    D.packages.forEach(function(p, idx){
+      html += '<div class="pkg-edit-card">' +
+        '<div class="pkg-edit-card-head">' +
+          '<span>Paquete '+(idx+1)+': '+xq(p.name)+'</span>' +
+          '<button class="pkg-del-btn" onclick="deletePkg('+p.id+')">🗑 Eliminar</button>' +
+        '</div>' +
+        '<div class="ep-f"><label>Nombre</label><input type="text" data-pkg="'+p.id+'" data-field="name" value="'+xq(p.name)+'" oninput="luPkg(this)"></div>' +
+        '<div class="ep-f"><label>Precio (solo número, sin $)</label><input type="text" data-pkg="'+p.id+'" data-field="price" value="'+xq(p.price)+'" oninput="luPkg(this)"></div>' +
+        '<div class="ep-f"><label>Texto bajo el precio</label><input type="text" data-pkg="'+p.id+'" data-field="period" value="'+xq(p.period)+'" oninput="luPkg(this)"></div>' +
+        '<div class="ep-toggle"><span>Marcar como "Más Popular"</span>' +
+          '<label class="sw"><input type="checkbox" data-pkg="'+p.id+'" data-field="featured" '+(p.featured?'checked':'')+' onchange="luPkg(this)">' +
+          '<div class="sw-track"></div><div class="sw-knob"></div></label></div>' +
+        '<div class="ep-f"><label>Características (una por línea)</label>' +
+          '<textarea data-pkg="'+p.id+'" data-field="features" style="min-height:100px" oninput="luPkg(this)">'+xq(p.features.join('\n'))+'</textarea></div>' +
+        '</div>';
+    });
+    html += '<button class="pkg-add-btn" onclick="addPkg()">＋ &nbsp;Agregar nuevo paquete</button>';
+    html += '<p style="font-family:var(--fu);font-size:10px;color:rgba(255,255,255,.25);margin-top:10px;line-height:1.5">Los cambios se aplican en tiempo real. Recuerda descargar el HTML para guardarlos.</p>';
+    return html;
+  },
+  videos: function() {
+    return '<div class="ep-sec">🎬 Video 1</div>'+
+      ft('showVid1','Mostrar video 1',D.showVid1)+
+      f('vid1id','ID de YouTube (parte después de v=)',D.vid1id,'Ej: dQw4w9WgXcQ')+
+      f('vid1title','Título del video',D.vid1title)+
+      f('vid1desc','Descripción',D.vid1desc)+
+      '<div class="ep-sec">🎬 Video 2</div>'+
+      ft('showVid2','Mostrar video 2',D.showVid2)+
+      f('vid2id','ID de YouTube',D.vid2id,'Ej: dQw4w9WgXcQ')+
+      f('vid2title','Título del video',D.vid2title)+
+      f('vid2desc','Descripción',D.vid2desc)+
+      '<p style="font-family:var(--fu);font-size:10px;color:rgba(255,255,255,.25);margin-top:10px;line-height:1.6">Abre el video en YouTube y copia el código después de <strong style="color:var(--gold-dim)">v=</strong> en la URL.</p>';
+  },
+  opiniones: function() {
+    var html = '<div class="ep-sec">⭐ Testimonios fijos (6)</div>';
+    for(var i=1;i<=6;i++){
+      html += '<div style="background:rgba(255,255,255,.03);padding:10px;border-radius:3px;margin-bottom:10px">' +
+        '<p style="font-family:var(--fd);font-size:10px;color:var(--gold-dim);margin-bottom:8px">TESTIMONIO '+i+'</p>'+
+        fa('t'+i+'text','Texto del testimonio',D['t'+i+'text'])+
+        f('t'+i+'name','Nombre y ciudad',D['t'+i+'name'])+
+        f('t'+i+'date','Fecha',D['t'+i+'date'])+'</div>';
+    }
+    return html;
+  },
+  redes: function() {
+    return '<div class="ep-sec">📲 Redes sociales</div>'+
+      ft('showFb','Mostrar Facebook',D.showFb)+f('linkFb','Link de Facebook',D.linkFb,'https://facebook.com/tupagina')+
+      ft('showIg','Mostrar Instagram',D.showIg)+f('linkIg','Link de Instagram',D.linkIg,'https://instagram.com/usuario')+
+      ft('showTt','Mostrar TikTok',D.showTt)+f('linkTt','Link de TikTok',D.linkTt,'https://tiktok.com/@usuario')+
+      ft('showWa','Mostrar WhatsApp en redes',D.showWa)+
+      ft('showYt','Mostrar YouTube',D.showYt)+f('linkYt','Link de YouTube',D.linkYt,'https://youtube.com/@canal');
+  }
+};
+
+function switchTab(tab, btn) {
+  curTab = tab;
+  document.querySelectorAll('.ep-tab').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  document.getElementById('ep-body').innerHTML = TABS[tab]();
+}
+
+function openEditor() {
+  document.getElementById('edit-panel').classList.add('open');
+  document.getElementById('ep-body').innerHTML = TABS[curTab]();
+}
+function closeEditor() {
+  document.getElementById('edit-panel').classList.remove('open');
+}
+
+// Live update de campos normales
+function lu(el) {
+  var key = el.dataset.key;
+  var val = el.type === 'checkbox' ? el.checked : el.value;
+  D[key] = val;
+  saveToScript();
+  renderAll();
+}
+
+// Live update de paquetes
+function luPkg(el) {
+  var id    = parseInt(el.dataset.pkg);
+  var field = el.dataset.field;
+  var val   = el.type === 'checkbox' ? el.checked : el.value;
+  var pkg   = D.packages.find(function(p){ return p.id === id; });
+  if (!pkg) return;
+  if (field === 'features') {
+    pkg.features = val.split('\n').map(function(s){ return s.trim(); }).filter(function(s){ return s; });
+  } else {
+    pkg[field] = val;
+  }
+  saveToScript();
+  renderAll();
+}
+
+function addPkg() {
+  var newId = Date.now();
+  D.packages.push({
+    id: newId, name: 'Nuevo Paquete', price: '999',
+    period: 'Pago único · Todo incluido', featured: false,
+    features: ['Característica 1', 'Característica 2', 'Característica 3']
+  });
+  saveToScript();
+  renderAll();
+  // Re-render tab para mostrar nuevo paquete
+  document.getElementById('ep-body').innerHTML = TABS['precios']();
+  showToast('✦ Paquete agregado');
+}
+
+function deletePkg(id) {
+  if (D.packages.length <= 1) { showToast('⚠️ Debe haber al menos un paquete'); return; }
+  D.packages = D.packages.filter(function(p){ return p.id !== id; });
+  saveToScript();
+  renderAll();
+  document.getElementById('ep-body').innerHTML = TABS['precios']();
+  showToast('Paquete eliminado');
+}
+
+// ================================================================
+// DESCARGAR HTML — SOLUCIÓN: serializar el DOM limpio
+// ================================================================
+function downloadHTML() {
+  // Guardar datos al script embebido
+  saveToScript();
+
+  // Cerrar paneles antes de serializar
+  var editPanel  = document.getElementById('edit-panel');
+  var adminPanel = document.getElementById('admin-panel');
+  var editWasOpen  = editPanel.classList.contains('open');
+  var adminWasOpen = adminPanel.classList.contains('open');
+  editPanel.classList.remove('open');
+  adminPanel.classList.remove('open');
+
+  // Serializar el HTML
+  var html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+
+  // Restaurar paneles
+  if(editWasOpen)  editPanel.classList.add('open');
+  if(adminWasOpen) adminPanel.classList.add('open');
+
+  // Descargar
+  var blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'memoria_eterna.html';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(a.href);
+  showToast('✦ Archivo descargado — ábrelo y todos tus datos estarán listos');
+}
+
+// ================================================================
+// COMENTARIOS PÚBLICOS
+// ================================================================
+function submitComment() {
+  var name  = document.getElementById('cn-name').value.trim();
+  var text  = document.getElementById('cn-text').value.trim();
+  var stars = parseInt(document.getElementById('cn-stars').value);
+  if (!name || text.length < 5) { showToast('⚠️ Escribe tu nombre y comentario'); return; }
+  D.comments.unshift({
+    id: Date.now(), name: name, text: text, stars: stars,
+    date: new Date().toLocaleDateString('es-MX',{year:'numeric',month:'long',day:'numeric'})
+  });
+  saveToScript();
+  renderPubComments();
+  document.getElementById('cn-name').value = '';
+  document.getElementById('cn-text').value = '';
+  showToast('✦ ¡Gracias! Tu comentario fue publicado');
+}
+
+function renderPubComments() {
+  var el = document.getElementById('pub-comments'); if(!el) return;
+  var c  = D.comments;
+  if (!c || !c.length) {
+    el.innerHTML = '<p style="font-family:var(--fu);font-size:13px;color:var(--text-soft);text-align:center">Sé el primero en dejar un comentario.</p>';
+    return;
+  }
+  el.innerHTML = c.map(function(x){
+    var s = ''; for(var i=0;i<5;i++) s += i < x.stars ? '★' : '☆';
+    return '<div class="pub-comment"><div class="pc-top"><span class="pc-name">'+xs(x.name)+'</span><span class="pc-date">'+x.date+'</span></div><div class="pc-stars">'+s+'</div><p class="pc-text">'+xs(x.text)+'</p></div>';
+  }).join('');
+}
+
+// ================================================================
+// ADMIN
+// ================================================================
+var fc=0, ft2;
+function footClick() {
+  fc++; clearTimeout(ft2); ft2=setTimeout(function(){fc=0;},1500);
+  if(fc>=3){ fc=0; document.getElementById('admin-panel').classList.add('open'); document.getElementById('adm-login-box').style.display='block'; document.getElementById('adm-content').style.display='none'; }
+}
+function adminLogin() {
+  if(document.getElementById('adm-pwd').value === D.adminPwd){
+    document.getElementById('adm-login-box').style.display='none';
+    document.getElementById('adm-content').style.display='flex';
+    renderAdmin();
+  } else { showToast('❌ Contraseña incorrecta'); document.getElementById('adm-pwd').value=''; }
+}
+function closeAdmin() { document.getElementById('admin-panel').classList.remove('open'); document.getElementById('adm-pwd').value=''; }
+function renderAdmin() {
+  var el = document.getElementById('adm-list');
+  var c  = D.comments;
+  if(!c||!c.length){ el.innerHTML='<p style="font-family:var(--fu);font-size:12px;color:rgba(255,255,255,.3);padding:16px">No hay comentarios aún.</p>'; return; }
+  el.innerHTML = c.map(function(x){
+    return '<div class="adm-item"><div class="adm-item-name">'+xs(x.name)+' · '+x.stars+'★ · '+x.date+'</div><div class="adm-item-text">'+xs(x.text)+'</div><button class="del-btn" onclick="delComment('+x.id+')">Eliminar</button></div>';
+  }).join('');
+}
+function delComment(id) {
+  D.comments = D.comments.filter(function(c){return c.id!==id;});
+  saveToScript(); renderAdmin(); renderPubComments();
+  showToast('Comentario eliminado');
+}
+
+// ================================================================
+// PEDIDOS
+// ================================================================
+function goOrder(pkg) {
+  var sel = document.getElementById('o-pkg');
+  if(sel){ for(var i=0;i<sel.options.length;i++){ if(sel.options[i].value===pkg){ sel.selectedIndex=i; break; } } }
+  document.getElementById('pedidos').scrollIntoView({behavior:'smooth'});
+}
+function submitOrder() {
+  var name  = document.getElementById('o-name').value.trim();
+  var phone = document.getElementById('o-phone').value.trim();
+  var email = document.getElementById('o-email').value.trim();
+  var pkg   = document.getElementById('o-pkg').value;
+  if(!name||!phone||!email||!pkg){ showToast('⚠️ Llena los campos obligatorios (*)'); return; }
+  var pay    = document.querySelector('input[name="pay"]:checked');
+  var payVal = pay ? pay.value : '';
+  if(payVal==='mercadopago' && D.mercadopago && D.mercadopago!=='https://mpago.la/TULINK') window.open(D.mercadopago,'_blank');
+  var person = document.getElementById('o-person').value;
+  var msg    = document.getElementById('o-msg').value;
+  var txt = '¡Hola! Quiero hacer un pedido de Memoria Eterna.\n\n👤 Nombre: '+name+'\n📦 Paquete: '+pkg+'\n💛 Memorial para: '+person+'\n💳 Pago: '+payVal+(msg?'\n📝 '+msg:'')+'\n\nTel: '+phone+' | Email: '+email;
+  window.open('https://wa.me/'+D.whatsapp+'?text='+encodeURIComponent(txt),'_blank');
+  showToast('✦ Abriendo WhatsApp...');
+}
+
+// ================================================================
+// UTILIDADES
+// ================================================================
+function showToast(m){ var t=document.getElementById('toast'); t.textContent=m; t.classList.add('show'); setTimeout(function(){t.classList.remove('show');},3500); }
+function toggleMenu(){ document.getElementById('mob-menu').classList.toggle('open'); }
+function openLb(el){ var img=el.querySelector('img'); if(!img)return; document.getElementById('lb-img').src=img.src; document.getElementById('lightbox').classList.add('open'); document.body.style.overflow='hidden'; }
+function closeLb(){ document.getElementById('lightbox').classList.remove('open'); document.body.style.overflow=''; }
+document.getElementById('lightbox').addEventListener('click',function(e){if(e.target===this)closeLb();});
+document.addEventListener('keydown',function(e){ if(e.key==='Escape'){closeLb();closeEditor();closeAdmin();} });
+window.addEventListener('scroll',function(){ document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>40); });
+var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('vis');});},{threshold:.1});
+document.querySelectorAll('.rev').forEach(function(el){obs.observe(el);});
+
+// INICIALIZAR
+renderAll();
+</script>
+
+
+</body></html>
